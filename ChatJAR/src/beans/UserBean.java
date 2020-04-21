@@ -39,7 +39,6 @@ public class UserBean implements UserRemote, UserLocal{
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String registerUser(User u) {
-		System.out.println("HERE");
 		UserData userData = (UserData) ctx.getAttribute("users");
 		if(userData.userExists(u.getUsername())) {
 			return "failure";
@@ -54,7 +53,11 @@ public class UserBean implements UserRemote, UserLocal{
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String logUser(User u) {
-		
+		UserData userData = (UserData) ctx.getAttribute("users");
+		if(userData.userPassword(u.getUsername(), u.getPassword()))
+			userData.getLoggedUsers().add(u.getUsername());
+		else
+			return "failure";
 		return "success";
 	}
 	

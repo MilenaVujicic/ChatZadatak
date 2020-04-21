@@ -1,5 +1,6 @@
 package data;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,6 +12,8 @@ public class UserData {
 	private List<String> loggedUsers;
 	
 	public UserData() {
+		allUsers = new HashMap<String, User>();
+		loggedUsers = new ArrayList<String>();
 		User admin = new User();
 		admin.setUsername("admin");
 		admin.setPassword("admin");
