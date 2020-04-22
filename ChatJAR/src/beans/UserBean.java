@@ -31,7 +31,8 @@ public class UserBean implements UserRemote, UserLocal{
 	@PostConstruct
 	public void init() {
 		if(ctx.getAttribute("users") == null) {
-			ctx.setAttribute("users", new UserData());
+			ctx.setAttribute("users", UserData.getInstance());
+			System.out.println("UserDataMessage");
 		}
 	}
 	

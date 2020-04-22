@@ -12,8 +12,8 @@ $(document).ready(()=>{
 			contentType: 'application/json',
 			success: function(u){
 				if(u != null){
-					alert("Logged in!");
 					localStorage.setItem("user", u.username);
+					localStorage.setItem("userObject", JSON.stringify(u));
 					window.location.href = "./index.html";
 				}else{
 					alert("Wrong username or password");

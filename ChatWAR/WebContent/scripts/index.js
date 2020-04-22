@@ -30,6 +30,7 @@ function logout(event){
 		url: 'rest/users/loggedIn/' + user,
 		success: function(){
 			localStorage.removeItem("user");
+			localStorage.removeItem("userObject");
 			location.reload();
 		},
 		error: function(){

@@ -11,6 +11,8 @@ public class UserData {
 	private HashMap<String, User> allUsers;
 	private List<String> loggedUsers;
 	
+	private static UserData instance = null;
+	
 	public UserData() {
 		allUsers = new HashMap<String, User>();
 		loggedUsers = new ArrayList<String>();
@@ -56,5 +58,12 @@ public class UserData {
 		this.loggedUsers = loggedUsers;
 	}
 	
+	public static UserData getInstance() {
+		if(instance == null) {
+			instance = new UserData();
+		}
+		
+		return instance;
+	}
 	
 }

@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class Message {
 
-	private User reviecer;
+	private User receiver;
 	private User sender;
 	private Calendar dateCreated;
 	private String subject;
@@ -14,21 +14,21 @@ public class Message {
 		super();
 	}
 
-	public Message(User reviecer, User sender, Calendar dateCreated, String subject, String content) {
+	public Message(User receiver, User sender, Calendar dateCreated, String subject, String content) {
 		super();
-		this.reviecer = reviecer;
+		this.receiver = receiver;
 		this.sender = sender;
 		this.dateCreated = dateCreated;
 		this.subject = subject;
 		this.content = content;
 	}
 
-	public User getReviecer() {
-		return reviecer;
+	public User getReceiver() {
+		return receiver;
 	}
 
-	public void setReviecer(User reviecer) {
-		this.reviecer = reviecer;
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 
 	public User getSender() {
