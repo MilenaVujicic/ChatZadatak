@@ -95,8 +95,14 @@ public class UserBean implements UserRemote, UserLocal{
 	@DELETE
 	@Path("/loggedIn/{user}")
 	public void logout(@PathParam("user") String username) {
-		UserData userData = (UserData) ctx.getAttribute("users");
-		System.out.println(username);
-		userData.getLoggedUsers().remove(username);
+		UserData userData = (UserData) ctx.getAttribute("users");		
+		
+		for(String s : userData.getLoggedUsers()) {
+			if(s.equals(username)) {
+				userData.getLoggedUsers().remove(s);
+				return;
+			}
+		}
+	
 	}
 }

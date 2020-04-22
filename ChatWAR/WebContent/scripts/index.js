@@ -1,7 +1,10 @@
 $(document).ready(()=>{
 	document.getElementById('aLogout').addEventListener('click', logout, false);
-	let user = localStorage.getItem("loggedUser");
-	alert(user.username);
+	let user = null;
+	if("user" in localStorage)
+		user = localStorage.getItem("user");
+	
+
 	if(user != null)
 		logged = true;
 	else
@@ -18,16 +21,15 @@ $(document).ready(()=>{
 
 function logout(event){
 	event.preventDefault();
-	let user = localStorage.getItem("loggedUser");
+	let user = localStorage.getItem("user");
 	if(user == null)
 		return;
 	
 	$.ajax({
 		type: 'DELETE',
-		url: 'rest/users/loggedIn/' + user.username,
+		url: 'rest/users/loggedIn/' + user,
 		success: function(){
-			alert("Logged out!");
-			localStorage.setItem("loggedUser", null);
+			localStorage.removeItem("user");
 			location.reload();
 		},
 		error: function(){

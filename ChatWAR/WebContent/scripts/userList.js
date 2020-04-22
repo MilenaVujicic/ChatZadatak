@@ -1,4 +1,8 @@
 $(document).ready(()=>{
+	
+	$('#tRegistered tbody').empty();
+	$('#tLogged tbody').empty();
+	
 	$.ajax({
 		type: 'GET',
 		url: 'rest/users/registered',

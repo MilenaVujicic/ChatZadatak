@@ -13,7 +13,7 @@ $(document).ready(()=>{
 			success: function(u){
 				if(u != null){
 					alert("Logged in!");
-					localStorage.setItem("loggedUser", u.username);
+					localStorage.setItem("user", u.username);
 					window.location.href = "./index.html";
 				}else{
 					alert("Wrong username or password");
