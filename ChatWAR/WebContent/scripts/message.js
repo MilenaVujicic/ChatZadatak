@@ -1,3 +1,5 @@
+var selection = 'allReg';
+
 $(document).ready(()=>{
 	
 	document.getElementById('rSelect').addEventListener('click', changeToSelect, false);
@@ -23,15 +25,17 @@ $(document).ready(()=>{
 
 function changeToSelect(){
 	$('#sUsers').attr('hidden', false);
+	selection = 'select';
 }
 
 function changeToAll(){
 	$('#sUsers').attr('hidden', true);
+	selection = 'allReg';
 }
 
 function sendMessage(){
 
-	let selection = $('input:radio[name=sel]').val();
+	//let selection = $('input:radio[name=sel]').val();
 	let sender = JSON.parse(localStorage.getItem("userObject"));
 	let subject = $('#subjectContent').val();
 	let content = $('#textContent').val();
@@ -52,6 +56,19 @@ function sendMessage(){
 		});
 		
 	}else if(selection === 'select'){
-		
+		let selUser = $('#sUsers').val();
+		$.ajax({
+			type: 'POST',
+			url: 'rest/messages/' + selUser,
+			data: JSON.stringify({subject, content, sender}),
+			contentType: 'application/json',
+			success: function(){
+				alert("Message sent to " + selUser);
+				location.reload();
+			},
+			error: function(){
+				alert('Something went wrong');
+			}
+		})
 	}
 }

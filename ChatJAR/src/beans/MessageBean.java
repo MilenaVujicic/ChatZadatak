@@ -70,6 +70,22 @@ public class MessageBean implements MessageRemote, MessageLocal{
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String sendToUser(@PathParam("user") String username, Message m) {
+		Calendar c = Calendar.getInstance();
+		String content = m.getContent();
+		String subject = m.getSubject();
+		User sender = m.getSender();
+		MessageData msgData = (MessageData) ctx.getAttribute("messages");
+		UserData userData = (UserData) ctx.getAttribute("users"); 
+		
+		User receiver = userData.getAllUsers().get(username);
+		Message msg = new Message();
+		msg.setContent(content);
+		msg.setDateCreated(c);
+		msg.setReceiver(receiver);
+		msg.setSender(sender);
+		msg.setSubject(subject);
+		msgData.getReceivedMessages().put(msg, receiver.getUsername());
+		msgData.getSentMessages().put(msg, sender.getUsername());
 		return "success";	
 	}
 	
