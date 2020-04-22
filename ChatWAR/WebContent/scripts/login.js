@@ -10,10 +10,11 @@ $(document).ready(()=>{
 			url: "rest/users/login",
 			data: JSON.stringify({username, password}),
 			contentType: 'application/json',
-			success: function(msg){
-				if(msg === 'success'){
+			success: function(u){
+				if(u != null){
 					alert("Logged in!");
-					window.location = "./index.html";
+					localStorage.setItem("loggedUser", u.username);
+					window.location.href = "./index.html";
 				}else{
 					alert("Wrong username or password");
 					$('#fUsername').val('');

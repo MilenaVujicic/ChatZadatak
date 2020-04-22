@@ -12,6 +12,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -51,14 +52,20 @@ public class UserBean implements UserRemote, UserLocal{
 	@POST
 	@Path("/login")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
-	public String logUser(User u) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public User logUser(User u) {
+		User ret = null;
 		UserData userData = (UserData) ctx.getAttribute("users");
-		if(userData.userPassword(u.getUsername(), u.getPassword()))
-			userData.getLoggedUsers().add(u.getUsername());
-		else
-			return "failure";
-		return "success";
+		if(userData.userPassword(u.getUsername(), u.getPassword())) {
+			if(!userData.getLoggedUsers().contains(u.getUsername())) {
+				userData.getLoggedUsers().add(u.getUsername());
+				ret = userData.getAllUsers().get(u.getUsername());
+			}else {
+				ret = userData.getAllUsers().get(u.getUsername());
+			}
+		}
+
+		return ret;
 	}
 	
 	@GET
@@ -66,7 +73,10 @@ public class UserBean implements UserRemote, UserLocal{
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> loggedUsers(){
 		List<User> u = new ArrayList<User>();
-		
+		UserData userData = (UserData) ctx.getAttribute("users");
+		for(String username : userData.getLoggedUsers()) {
+			u.add(userData.getAllUsers().get(username));
+		}
 		return u;
 	}
 
@@ -75,13 +85,18 @@ public class UserBean implements UserRemote, UserLocal{
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<User> registeredUsers(){
 		List<User> u = new ArrayList<User>();
-		
+		UserData userData = (UserData) ctx.getAttribute("users");
+		for(User user : userData.getAllUsers().values()) {
+			u.add(user);
+		}
 		return u;
 	}
 	
 	@DELETE
 	@Path("/loggedIn/{user}")
-	public void logout() {
-		
+	public void logout(@PathParam("user") String username) {
+		UserData userData = (UserData) ctx.getAttribute("users");
+		System.out.println(username);
+		userData.getLoggedUsers().remove(username);
 	}
 }
