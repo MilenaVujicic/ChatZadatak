@@ -5,8 +5,17 @@
 <title>Message</title>
 <script src = "./scripts/jquery-3.5.0.js" type = "text/javascript"></script>
 <script src = "./scripts/message.js" type = "text/javascript"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href = "./css/login.css" rel = "stylesheet">
 </head>
 <body>
+<div class="container">
+    <div class="row">
+		<div class="col-sm-4 col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
 <h4>New Message</h4>
 Send to:
 <br/>
@@ -23,7 +32,12 @@ Send to:
 <input type = "text" id = "subjectContent">
 <br>
 <label>Message</label>
-<textarea id = "textContent"></textarea>
-<button type = "button" id = "btnSend">Send Message</button>
+<textarea class="form-control counted" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;" id = "textContent"></textarea>
+<button type = "button" id = "btnSend"  class="btn btn-info">Send Message</button>
+</div>
+</div>
+</div>
+</div>
+</div>
 </body>
 </html>

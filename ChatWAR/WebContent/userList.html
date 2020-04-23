@@ -5,22 +5,34 @@
 <title>User List</title>
 <script src = "./scripts/jquery-3.5.0.js" type = "text/javascript"></script>
 <script src = "./scripts/userList.js" type = "text/javascript"></script>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href = "./css/inbox.css" rel = "stylesheet">
 </head>
 <body>
 <div id = "registeredUsers">
-<table id = "tRegistered"  border = "1">
+<div class="container">
+        <div class="row col-md-3 col-md-offset-4 custyle">
+<table id = "tRegistered"  class="table table-striped custab">
 <caption>All Users</caption>
 <thead></thead>
 <tbody></tbody>
 </table>
 <br/>
 </div>
+</div>
+</div>
 <div id = "loggedUsers">
-<table id = "tLogged"  border = "1">
+<div class="container">
+    <div class="row col-md-3 col-md-offset-4 custyle">
+<table id = "tLogged"  class="table table-striped custab">
 <caption>Online users</caption>
 <thead></thead>
 <tbody></tbody>
 </table>
+</div>
+</div>
 </div>
 </body>
 </html>

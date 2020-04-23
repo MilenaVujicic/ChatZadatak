@@ -1,4 +1,4 @@
-var selection = 'allReg';
+var selection = 'none';
 
 $(document).ready(()=>{
 	
@@ -70,5 +70,7 @@ function sendMessage(){
 				alert('Something went wrong');
 			}
 		})
+	}else{
+		alert("Select an option");
 	}
 }
