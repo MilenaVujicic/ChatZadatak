@@ -1,5 +1,6 @@
 package beans;
 
+import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 
 import data.UserData;
+import model.Host;
 import model.User;
 
 @Stateless
@@ -65,7 +67,20 @@ public class UserBean implements UserRemote, UserLocal{
 				ret = userData.getAllUsers().get(u.getUsername());
 			}
 		}
+		
+		InetAddress address = null;
+		String alias = null;
+		
+		try {
+			address = InetAddress.getLocalHost();
+			alias = address.getHostName();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		ret.setHost(new Host(alias, address));
 
+		System.out.println(ret.toString());
 		return ret;
 	}
 	
