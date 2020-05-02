@@ -1,13 +1,11 @@
 package model;
 
-import java.net.InetAddress;
-
 public class Host {
 
 	private String alias;
-	private InetAddress address;
+	private String address;
 
-	public Host(String alias, InetAddress address) {
+	public Host(String alias, String address) {
 		super();
 		this.alias = alias;
 		this.address = address;
@@ -25,19 +23,13 @@ public class Host {
 		this.alias = alias;
 	}
 
-	public InetAddress getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(InetAddress address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	@Override
-	public String toString() {
-		return "Host [alias=" + alias + ", address=" + address + "]";
-	}
-	
 	
 	
 }
